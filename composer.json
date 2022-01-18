@@ -1,0 +1,26 @@
+{
+    "name": "sothea/laravel",
+    "description": "this is for testing",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "sothea-st",
+            "email": "sotheakam210@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "ReadDeleteData\\Shortcut\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ReadDeleteData\\Shortcut\\ReadDeleteServiceProvider"
+            ]
+        }
+    }
+}
