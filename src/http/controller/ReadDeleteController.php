@@ -23,7 +23,7 @@ class ReadDeleteController extends Controller
     public function restore_n_deleted_record_from_bin($id,$tbl,$status)
     {
         \DB::table($tbl)->where( "id",$id )->update([ "status" => $status ]);
-        return redirect()->back();
+        return response()->json([ "status" => 200 ]);
     }
 
     public function global_query_record($id,$tb,$fk,$tbl,$check)
