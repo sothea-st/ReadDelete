@@ -3,15 +3,19 @@
 namespace ReadDeleteData\Shortcut\Http\Controller;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ReadDeleteController extends Controller
 {
     public function move_record_to_bin($id,$tbl,$confirm)
     {
-        date_default_timezone_set("Asia/Phnom_Penh");
+        // date_default_timezone_set("Asia/Phnom_Penh");
+        // if ( $confirm == "yes" ) {
+        //     \DB::table($tbl)->where("id",$id)->update([ "status" => 0 , "deleted_at" => date("Y-m-d , h:i:s") ]);
+        // }
         if ( $confirm == "yes" ) {
-            \DB::table($tbl)->where("id",$id)->update([ "status" => 2 , "deleted_at" => date("Y-m-d , h:i:s") ]);
+            \DB::table($tbl)->where("id",$id)->update([ "status" => 0 , "updated_at" => Carbon::now("Asia/Phnom_Penh") ]);
         }
         return response()->json([ "status" => 200 ]);
     }
