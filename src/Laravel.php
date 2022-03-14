@@ -12,22 +12,27 @@
             }
         }
 
-        public static function upload($file,$old_img,$location){
-            if ( $file ) {
+        public static function uploadFile($file , $location , $previous_photo){
+            if ($file) {
                 $profile_name = $file->getClientOriginalName();
-                $file->move( public_path($location) , $profile_name );
+                $file->move(public_path($location), $profile_name);
                 return $profile_name;
             } else {
-                $profile_name = $old_img;
-                return $profile_name;
+                return $previous_photo;
             }
         }
 
-        public static function edit($id,$tbl,$join_table,$join_fk)
+
+        public static function edit($id,$tbl,$join_table=null,$join_fk=null)
         {
+            if ( $join_table == null ) {
+                $join_table = "none";
+            }
+            if ( $join_fk == null ) {
+                $join_fk = "none";
+            }
+
             // $table = Crypt::encryptString($tbl);
-            if ( $join_table == "0" ) { $join_table = "none"; }
-            if ( $join_fk == "0" ) { $join_fk = "none"; }
             $url = url("global-query-record-from-table/".$id."/".$join_table."/".$join_fk."/".$tbl."/edit");
             return $url;
         }
@@ -59,22 +64,6 @@
             $url = url("global-restored-and-deleted-record-from-bin/".$id."/".$tbl.'/1');
             return $url;
         }
-
-        // public static function all_in_one($id,$tbl,$join_table,$join_fk,$con)
-        // {
-        //     // $table = Crypt::encryptString($tbl);
-        //     if ( $con == "edit" ) {
-        //         $url = "global-query-record-from-table/".$id."/".$join_table."/".$join_fk."/".$tbl."/edit";
-        //     } else if ( $con == "delete" ) {
-        //         $url = "global-move-record-to-bin/".$id."/".$tbl;
-        //     } else if ( $con == "restore_and_delete" ) {
-        //         $url = "global-restored-and-deleted-record-from-bin/".$id."/".$tbl;
-        //     } else if ( $con == "view" ) {
-        //         $url = "global-query-record-from-table/".$id."/".$join_table."/".$join_fk."/".$tbl."/view";
-        //     }
-        //     return $url;
-        // }
-
 
     }
 
